@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faTimes, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 
 interface NavigationProps {
   darkMode: boolean;
@@ -23,17 +24,17 @@ const Navigation = ({ darkMode, toggleMode }: NavigationProps) => {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className={`text-xl font-bold ${darkMode ? 'text-sky-400' : 'text-black'}`}>
+          <div className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-sky-400' : 'text-black'}`}>
             Portfolio
           </div>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex space-x-6 lg:space-x-8">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className={`story-link font-medium transition-colors duration-200 ${
+                className={`story-link font-medium text-sm lg:text-base transition-colors duration-200 ${
                   darkMode ? 'text-sky-400 hover:text-sky-300' : 'text-black hover:text-gray-700'
                 }`}
               >
@@ -45,13 +46,14 @@ const Navigation = ({ darkMode, toggleMode }: NavigationProps) => {
           {/* Mode Toggle */}
           <button
             onClick={toggleMode}
-            className={`hidden md:block px-4 py-2 rounded-lg transition-all duration-200 ${
+            className={`hidden md:flex items-center gap-2 px-3 lg:px-4 py-2 rounded-lg transition-all duration-200 text-sm lg:text-base ${
               darkMode 
                 ? 'bg-sky-400 text-black hover:bg-sky-300' 
                 : 'bg-black text-sky-400 hover:bg-gray-800'
             }`}
           >
-            {darkMode ? 'Light Mode' : 'Dark Mode'}
+            <FontAwesomeIcon icon={darkMode ? faSun : faMoon} className="w-4 h-4" />
+            <span className="hidden lg:inline">{darkMode ? 'Light' : 'Dark'}</span>
           </button>
 
           {/* Mobile menu button */}
@@ -59,7 +61,7 @@ const Navigation = ({ darkMode, toggleMode }: NavigationProps) => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className={`md:hidden p-2 ${darkMode ? 'text-sky-400' : 'text-black'}`}
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            <FontAwesomeIcon icon={isMenuOpen ? faTimes : faBars} className="w-6 h-6" />
           </button>
         </div>
 
@@ -81,12 +83,13 @@ const Navigation = ({ darkMode, toggleMode }: NavigationProps) => {
               ))}
               <button
                 onClick={toggleMode}
-                className={`self-start px-4 py-2 rounded-lg transition-all duration-200 ${
+                className={`self-start flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 ${
                   darkMode 
                     ? 'bg-sky-400 text-black hover:bg-sky-300' 
                     : 'bg-black text-sky-400 hover:bg-gray-800'
                 }`}
               >
+                <FontAwesomeIcon icon={darkMode ? faSun : faMoon} className="w-4 h-4" />
                 {darkMode ? 'Light Mode' : 'Dark Mode'}
               </button>
             </div>
