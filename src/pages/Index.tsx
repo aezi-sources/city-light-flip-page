@@ -1,12 +1,27 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useState } from 'react';
+import Navigation from '../components/Navigation';
+import HeroSection from '../components/HeroSection';
+import AboutSection from '../components/AboutSection';
+import ProjectsSection from '../components/ProjectsSection';
+import ContactSection from '../components/ContactSection';
+import Footer from '../components/Footer';
 
 const Index = () => {
+  const [darkMode, setDarkMode] = useState(true);
+
+  const toggleMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen">
+      <Navigation darkMode={darkMode} toggleMode={toggleMode} />
+      <HeroSection darkMode={darkMode} />
+      <AboutSection darkMode={darkMode} />
+      <ProjectsSection darkMode={darkMode} />
+      <ContactSection darkMode={darkMode} />
+      <Footer darkMode={darkMode} />
     </div>
   );
 };
