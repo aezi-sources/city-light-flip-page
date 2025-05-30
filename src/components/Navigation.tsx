@@ -1,7 +1,5 @@
 
 import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 
 interface NavigationProps {
   darkMode: boolean;
@@ -52,7 +50,7 @@ const Navigation = ({ darkMode, toggleMode }: NavigationProps) => {
                 : 'bg-black text-sky-400 hover:bg-gray-800'
             }`}
           >
-            <FontAwesomeIcon icon={darkMode ? faSun : faMoon} className="w-4 h-4" />
+            <i className={`${darkMode ? 'fas fa-sun' : 'fas fa-moon'} w-4 h-4`}></i>
             <span className="hidden lg:inline">{darkMode ? 'Light' : 'Dark'}</span>
           </button>
 
@@ -61,7 +59,7 @@ const Navigation = ({ darkMode, toggleMode }: NavigationProps) => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className={`md:hidden p-2 ${darkMode ? 'text-sky-400' : 'text-black'}`}
           >
-            <FontAwesomeIcon icon={isMenuOpen ? faTimes : faBars} className="w-6 h-6" />
+            <i className={`${isMenuOpen ? 'fas fa-times' : 'fas fa-bars'} w-6 h-6`}></i>
           </button>
         </div>
 
@@ -89,7 +87,7 @@ const Navigation = ({ darkMode, toggleMode }: NavigationProps) => {
                     : 'bg-black text-sky-400 hover:bg-gray-800'
                 }`}
               >
-                <FontAwesomeIcon icon={darkMode ? faSun : faMoon} className="w-4 h-4" />
+                <i className={`${darkMode ? 'fas fa-sun' : 'fas fa-moon'} w-4 h-4`}></i>
                 {darkMode ? 'Light Mode' : 'Dark Mode'}
               </button>
             </div>

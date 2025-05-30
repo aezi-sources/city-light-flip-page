@@ -1,7 +1,4 @@
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
-
 interface HeroSectionProps {
   darkMode: boolean;
 }
@@ -31,7 +28,7 @@ const HeroSection = ({ darkMode }: HeroSectionProps) => {
             }`}
           >
             Learn More
-            <FontAwesomeIcon icon={faArrowDown} className="w-4 h-4" />
+            <i className="fas fa-arrow-down w-4 h-4"></i>
           </a>
           <a
             href="https://athelo.net"

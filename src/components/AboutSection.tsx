@@ -1,19 +1,15 @@
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCode, faDesktop, faServer, faPython } from '@fortawesome/free-solid-svg-icons';
-import { faReact, faNodeJs } from '@fortawesome/free-brands-svg-icons';
-
 interface AboutSectionProps {
   darkMode: boolean;
 }
 
 const AboutSection = ({ darkMode }: AboutSectionProps) => {
   const skills = [
-    { name: 'React', icon: faReact },
-    { name: 'TypeScript', icon: faCode },
-    { name: 'Node.js', icon: faNodeJs },
-    { name: 'Python', icon: faPython },
-    { name: 'Design', icon: faDesktop },
+    { name: 'React', icon: 'fab fa-react' },
+    { name: 'TypeScript', icon: 'fas fa-code' },
+    { name: 'Node.js', icon: 'fab fa-node-js' },
+    { name: 'Python', icon: 'fab fa-python' },
+    { name: 'Design', icon: 'fas fa-desktop' },
   ];
 
   return (
@@ -47,7 +43,7 @@ const AboutSection = ({ darkMode }: AboutSectionProps) => {
                       : 'bg-sky-400 text-black hover:bg-sky-300'
                   }`}
                 >
-                  <FontAwesomeIcon icon={skill.icon} className="w-4 h-4 flex-shrink-0" />
+                  <i className={`${skill.icon} w-4 h-4 flex-shrink-0`}></i>
                   <span className="truncate">{skill.name}</span>
                 </span>
               ))}

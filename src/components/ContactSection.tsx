@@ -1,7 +1,4 @@
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faPhone, faMapMarkerAlt, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
-
 interface ContactSectionProps {
   darkMode: boolean;
 }
@@ -31,7 +28,7 @@ const ContactSection = ({ darkMode }: ContactSectionProps) => {
                 <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
                   darkMode ? 'bg-black text-sky-400' : 'bg-sky-400 text-black'
                 }`}>
-                  <FontAwesomeIcon icon={faEnvelope} className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <i className="fas fa-envelope w-4 h-4 sm:w-5 sm:h-5"></i>
                 </div>
                 <div>
                   <p className="font-semibold text-sm sm:text-base">Email</p>
@@ -42,7 +39,7 @@ const ContactSection = ({ darkMode }: ContactSectionProps) => {
                 <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
                   darkMode ? 'bg-black text-sky-400' : 'bg-sky-400 text-black'
                 }`}>
-                  <FontAwesomeIcon icon={faPhone} className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <i className="fas fa-phone w-4 h-4 sm:w-5 sm:h-5"></i>
                 </div>
                 <div>
                   <p className="font-semibold text-sm sm:text-base">Phone</p>
@@ -53,7 +50,7 @@ const ContactSection = ({ darkMode }: ContactSectionProps) => {
                 <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
                   darkMode ? 'bg-black text-sky-400' : 'bg-sky-400 text-black'
                 }`}>
-                  <FontAwesomeIcon icon={faMapMarkerAlt} className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <i className="fas fa-map-marker-alt w-4 h-4 sm:w-5 sm:h-5"></i>
                 </div>
                 <div>
                   <p className="font-semibold text-sm sm:text-base">Location</p>
@@ -104,7 +101,7 @@ const ContactSection = ({ darkMode }: ContactSectionProps) => {
                   : 'bg-sky-400 text-black hover:bg-sky-300 hover:shadow-lg hover:shadow-sky-400/25'
               }`}
             >
-              <FontAwesomeIcon icon={faPaperPlane} className="w-4 h-4" />
+              <i className="fas fa-paper-plane w-4 h-4"></i>
               Send Message
             </button>
           </form>

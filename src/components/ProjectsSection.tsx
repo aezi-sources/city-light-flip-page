@@ -1,7 +1,4 @@
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExternalLink, faCheckCircle, faSpinner, faLightbulb } from '@fortawesome/free-solid-svg-icons';
-
 interface ProjectsSectionProps {
   darkMode: boolean;
 }
@@ -41,13 +38,13 @@ const ProjectsSection = ({ darkMode }: ProjectsSectionProps) => {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'Completed':
-        return faCheckCircle;
+        return 'fas fa-check-circle';
       case 'In Progress':
-        return faSpinner;
+        return 'fas fa-spinner';
       case 'Planning':
-        return faLightbulb;
+        return 'fas fa-lightbulb';
       default:
-        return faLightbulb;
+        return 'fas fa-lightbulb';
     }
   };
 
@@ -104,7 +101,7 @@ const ProjectsSection = ({ darkMode }: ProjectsSectionProps) => {
                           ? 'bg-blue-500/20 text-blue-400'
                           : 'bg-blue-500/20 text-blue-700'
                     }`}>
-                      <FontAwesomeIcon icon={getStatusIcon(project.status)} className="w-4 h-4" />
+                      <i className={`${getStatusIcon(project.status)} w-4 h-4`}></i>
                       {project.status}
                     </span>
                   </td>
@@ -139,7 +136,7 @@ const ProjectsSection = ({ darkMode }: ProjectsSectionProps) => {
                       ? 'bg-blue-500/20 text-blue-400'
                       : 'bg-blue-500/20 text-blue-700'
                 }`}>
-                  <FontAwesomeIcon icon={getStatusIcon(project.status)} className="w-3 h-3" />
+                  <i className={`${getStatusIcon(project.status)} w-3 h-3`}></i>
                   {project.status}
                 </span>
               </div>
@@ -161,7 +158,7 @@ const ProjectsSection = ({ darkMode }: ProjectsSectionProps) => {
             }`}
           >
             View Basic Projects
-            <FontAwesomeIcon icon={faExternalLink} className="w-4 h-4" />
+            <i className="fas fa-external-link-alt w-4 h-4"></i>
           </a>
         </div>
       </div>
