@@ -1,41 +1,64 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 
+interface BlogPost {
+  id: number;
+  title: string;
+  excerpt: string;
+  content: string;
+  date: string;
+  readTime: string;
+  tags: string[];
+}
+
 const Blog = () => {
   const [darkMode, setDarkMode] = useState(true);
+  const [posts, setPosts] = useState<BlogPost[]>([]);
 
   const toggleMode = () => {
     setDarkMode(!darkMode);
   };
 
-  const blogPosts = [
-    {
-      id: 1,
-      title: "Getting Started with React Development",
-      excerpt: "Learn the fundamentals of React and how to build modern web applications with this powerful library.",
-      date: "December 15, 2024",
-      readTime: "5 min read",
-      tags: ["React", "JavaScript", "Web Development"]
-    },
-    {
-      id: 2,
-      title: "Building Responsive Layouts with Tailwind CSS",
-      excerpt: "Discover how to create beautiful, responsive designs using Tailwind CSS utility classes and best practices.",
-      date: "December 10, 2024",
-      readTime: "7 min read",
-      tags: ["CSS", "Tailwind", "Design"]
-    },
-    {
-      id: 3,
-      title: "TypeScript Best Practices for Modern Development",
-      excerpt: "Explore advanced TypeScript patterns and techniques that will make your code more maintainable and robust.",
-      date: "December 5, 2024",
-      readTime: "8 min read",
-      tags: ["TypeScript", "Best Practices", "Development"]
+  // Load posts from localStorage
+  useEffect(() => {
+    const savedPosts = localStorage.getItem('blogPosts');
+    if (savedPosts) {
+      setPosts(JSON.parse(savedPosts));
+    } else {
+      // Default posts if none exist
+      setPosts([
+        {
+          id: 1,
+          title: "Getting Started with React Development",
+          excerpt: "Learn the fundamentals of React and how to build modern web applications with this powerful library.",
+          content: "React is a powerful JavaScript library for building user interfaces...",
+          date: "December 15, 2024",
+          readTime: "5 min read",
+          tags: ["React", "JavaScript", "Web Development"]
+        },
+        {
+          id: 2,
+          title: "Building Responsive Layouts with Tailwind CSS",
+          excerpt: "Discover how to create beautiful, responsive designs using Tailwind CSS utility classes and best practices.",
+          content: "Tailwind CSS is a utility-first CSS framework...",
+          date: "December 10, 2024",
+          readTime: "7 min read",
+          tags: ["CSS", "Tailwind", "Design"]
+        },
+        {
+          id: 3,
+          title: "TypeScript Best Practices for Modern Development",
+          excerpt: "Explore advanced TypeScript patterns and techniques that will make your code more maintainable and robust.",
+          content: "TypeScript adds static typing to JavaScript...",
+          date: "December 5, 2024",
+          readTime: "8 min read",
+          tags: ["TypeScript", "Best Practices", "Development"]
+        }
+      ]);
     }
-  ];
+  }, []);
 
   return (
     <div className="min-h-screen">
@@ -61,58 +84,66 @@ const Blog = () => {
       }`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 md:gap-12">
-            {blogPosts.map((post) => (
-              <article
-                key={post.id}
-                className={`p-6 sm:p-8 rounded-lg transition-all duration-300 hover-scale ${
-                  darkMode 
-                    ? 'bg-black/20 hover:bg-black/30' 
-                    : 'bg-sky-400/20 hover:bg-sky-400/30'
-                }`}
-              >
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-2">
-                  <div className="flex flex-wrap items-center gap-3 text-sm opacity-75">
-                    <span className="flex items-center gap-2">
-                      <i className="fas fa-calendar w-4 h-4"></i>
-                      {post.date}
-                    </span>
-                    <span className="flex items-center gap-2">
-                      <i className="fas fa-clock w-4 h-4"></i>
-                      {post.readTime}
-                    </span>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className={`px-3 py-1 rounded-full text-xs font-medium ${
-                          darkMode 
-                            ? 'bg-sky-400 text-black' 
-                            : 'bg-black text-sky-400'
-                        }`}
-                      >
-                        {tag}
+            {posts.length === 0 ? (
+              <div className="text-center py-12">
+                <i className="fas fa-file-alt text-4xl mb-4 opacity-50"></i>
+                <h3 className="text-xl font-semibold mb-2">No posts yet</h3>
+                <p className="opacity-75">Check back later for new content.</p>
+              </div>
+            ) : (
+              posts.map((post) => (
+                <article
+                  key={post.id}
+                  className={`p-6 sm:p-8 rounded-lg transition-all duration-300 hover-scale ${
+                    darkMode 
+                      ? 'bg-black/20 hover:bg-black/30' 
+                      : 'bg-sky-400/20 hover:bg-sky-400/30'
+                  }`}
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-2">
+                    <div className="flex flex-wrap items-center gap-3 text-sm opacity-75">
+                      <span className="flex items-center gap-2">
+                        <i className="fas fa-calendar w-4 h-4"></i>
+                        {post.date}
                       </span>
-                    ))}
+                      <span className="flex items-center gap-2">
+                        <i className="fas fa-clock w-4 h-4"></i>
+                        {post.readTime}
+                      </span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {post.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className={`px-3 py-1 rounded-full text-xs font-medium ${
+                            darkMode 
+                              ? 'bg-sky-400 text-black' 
+                              : 'bg-black text-sky-400'
+                          }`}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-                
-                <h2 className="text-2xl sm:text-3xl font-bold mb-3 hover:opacity-80 transition-opacity cursor-pointer">
-                  {post.title}
-                </h2>
-                
-                <p className="text-base sm:text-lg leading-relaxed mb-6 opacity-90">
-                  {post.excerpt}
-                </p>
-                
-                <button className={`inline-flex items-center gap-2 font-semibold transition-all duration-200 hover-scale ${
-                  darkMode ? 'text-sky-400 hover:text-sky-300' : 'text-black hover:text-gray-700'
-                }`}>
-                  Read More
-                  <i className="fas fa-arrow-right w-4 h-4"></i>
-                </button>
-              </article>
-            ))}
+                  
+                  <h2 className="text-2xl sm:text-3xl font-bold mb-3 hover:opacity-80 transition-opacity cursor-pointer">
+                    {post.title}
+                  </h2>
+                  
+                  <p className="text-base sm:text-lg leading-relaxed mb-6 opacity-90">
+                    {post.excerpt}
+                  </p>
+                  
+                  <button className={`inline-flex items-center gap-2 font-semibold transition-all duration-200 hover-scale ${
+                    darkMode ? 'text-sky-400 hover:text-sky-300' : 'text-black hover:text-gray-700'
+                  }`}>
+                    Read More
+                    <i className="fas fa-arrow-right w-4 h-4"></i>
+                  </button>
+                </article>
+              ))
+            )}
           </div>
         </div>
       </section>
